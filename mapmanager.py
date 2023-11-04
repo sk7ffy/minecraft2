@@ -1,8 +1,10 @@
 import pickle
 class MapManager:
     def __init__(self):
+        
         self.model = 'block'
-        self.texture = 'block.png'
+        self.texture = 'block3.png'
+        
         self.color = (0.2,0.2,0.35,2)
         self.addNew()
     def addNew(self):   
@@ -21,6 +23,11 @@ class MapManager:
         block.setTag('at',str(pos))
         block.reparentTo(self.land)
 
+    def addBlock2(self,pos):
+        block = loader.loadModel(self.model2)
+        block_texture = loader.loadTexture(self.texture2)
+    
+
     def delBlock(self,position):
         blocks = self.findBlocks(position)
         for block in blocks:
@@ -34,6 +41,12 @@ class MapManager:
             block.removeNode()
 
     def buildBlock(self, pos):
+        x, y, z = pos
+        new_pos = self.findHighestEmpty(pos)
+        if new_pos[2] < z + 1:
+            self.addBlock(new_pos)
+
+    def buildBlock2(self, pos):
         x, y, z = pos
         new_pos = self.findHighestEmpty(pos)
         if new_pos[2] < z + 1:

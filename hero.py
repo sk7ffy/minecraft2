@@ -120,6 +120,9 @@ class Hero():
         else:
             self.land.buildBlock(pos)
 
+
+
+
         
 
 
@@ -138,8 +141,8 @@ class Hero():
 
 
     def accept_events(self):
-        base.accept('n', self.turn_left)
-        base.accept('n-repeat', self.turn_left)
+        base.accept('i', self.turn_left)
+        base.accept('i-repeat', self.turn_left)
         base.accept('m', self.turn_right)
         base.accept('m-repeat', self.turn_right)
         base.accept('w',self.forward)
@@ -156,7 +159,12 @@ class Hero():
         base.accept('q-repeat',self.down)
         base.accept('z',self.change_mode)
         base.accept('f',self.build)
+        
         base.accept('g',self.destroy)
+        base.accept('n',self.land.saveMap)
+        base.accept('l',self.land.loadLand)
+        base.accept('y',self.land.clear)
+
 
 
 
